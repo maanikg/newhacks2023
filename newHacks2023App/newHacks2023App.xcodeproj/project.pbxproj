@@ -11,6 +11,8 @@
 		48CB2E4A2AF6D78D00826918 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CB2E492AF6D78D00826918 /* ContentView.swift */; };
 		48CB2E4C2AF6D78F00826918 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48CB2E4B2AF6D78F00826918 /* Assets.xcassets */; };
 		48CB2E4F2AF6D78F00826918 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48CB2E4E2AF6D78F00826918 /* Preview Assets.xcassets */; };
+		48D2E3332AF6DA2600D99795 /* handPose.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 48D2E3322AF6DA2600D99795 /* handPose.mlmodel */; };
+		48D2E3352AF6DC4200D99795 /* MLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D2E3342AF6DC4200D99795 /* MLModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		48CB2E492AF6D78D00826918 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		48CB2E4B2AF6D78F00826918 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48CB2E4E2AF6D78F00826918 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		48D2E3322AF6DA2600D99795 /* handPose.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = handPose.mlmodel; path = ../../model/handPose.mlmodel; sourceTree = "<group>"; };
+		48D2E3342AF6DC4200D99795 /* MLModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				48CB2E472AF6D78D00826918 /* newHacks2023AppApp.swift */,
 				48CB2E492AF6D78D00826918 /* ContentView.swift */,
+				48D2E3342AF6DC4200D99795 /* MLModel.swift */,
+				48D2E3322AF6DA2600D99795 /* handPose.mlmodel */,
 				48CB2E4B2AF6D78F00826918 /* Assets.xcassets */,
 				48CB2E4D2AF6D78F00826918 /* Preview Content */,
 			);
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48D2E3332AF6DA2600D99795 /* handPose.mlmodel in Sources */,
 				48CB2E4A2AF6D78D00826918 /* ContentView.swift in Sources */,
+				48D2E3352AF6DC4200D99795 /* MLModel.swift in Sources */,
 				48CB2E482AF6D78D00826918 /* newHacks2023AppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +203,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Give Access To Camera.";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -249,6 +258,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Give Access To Camera.";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
