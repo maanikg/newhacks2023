@@ -1,6 +1,5 @@
 # print("test")
 from flask import Flask, render_template, request, jsonify
-from flask_sse import sse
 
 import subprocess
 
