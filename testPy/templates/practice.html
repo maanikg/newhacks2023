@@ -193,6 +193,12 @@
         function displayScore() {
             document.getElementById("score").textContent = "Score: " + score
         }
+        window.onload = function () {
+            groundLetter = "A"
+            document.getElementById("letter").textContent = "Show us a " + groundLetter + "."
+            score = 0
+            document.getElementById("score").textContent = "Score: " + score
+        }
     </script>
 
 </body>
