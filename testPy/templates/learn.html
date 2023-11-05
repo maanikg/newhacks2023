@@ -128,17 +128,34 @@
 
         /* Add background image */
         body {
-            background-image: url('images/alphabet.jpg');
+            /* background-image: url('images/alphabet.jpg'); */
             background-size: 600px 400px;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-position: left bottom; 
-            margin: 0; 
-            padding: 0; 
+            background-position: left bottom;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
-<!--<body>
+<script>
+    document.getElementById('test').addEventListener('click', function () {
+        alert("test")
+        console.log("here")
+        // fetch('https://api.example.com/data', {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+        //     .then(response => response.json())
+        //     .then(data => console.log(data))
+        //     .catch((error) => {
+        //         console.error('Error:', error);
+        //     });
+    });
+</script>
+<!-- <body>
     <header>
         <div id="logo">ASLingo</div>
         <nav id="nav">
@@ -152,28 +169,11 @@
     <div>
         <img src="https://www.creativefabrica.com/wp-content/uploads/2021/07/19/ASL-alphabet-hand-signs-580x386.jpg">
     </div>
-    <!-- <script> -->
+ <script> -->
+<!-- </script> -->
 
-    <script>
-        document.getElementById('test').addEventListener('click', function () {
-            alert("test")
-            console.log("here")
-            // fetch('https://api.example.com/data', {
-            //     method: 'GET',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     }
-            // })
-            //     .then(response => response.json())
-            //     .then(data => console.log(data))
-            //     .catch((error) => {
-            //         console.error('Error:', error);
-            //     });
-        });
-    </script>
-    <!-- </script> -->
 
-    
 
-</body>-->
+<!-- </body>  -->
+
 </html>
