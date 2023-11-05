@@ -105,7 +105,7 @@ def stream():
                 if output == "" and processTest.poll() is not None:
                     break
                 if output:
-                    # print(output)
+                    print(output)
                     yield f"data: {output}\n\n"
                     # time.sleep(1)
             # print(output)

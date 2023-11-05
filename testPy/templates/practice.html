@@ -79,18 +79,23 @@
         </nav>
     </header>
 
+
+    <div id="score" style="text-align: center; left: 100px; font-size: 36px; font-family: Palanquin Dark;">Score</div>
+    <div id="letter" style="text-align: center; left: 100px; font-size: 36px; font-family: Palanquin Dark;">Show us the
+        letter A.</div>
+
     <button id="startButton" style="background-color: #4CAF50; /* Green */
         border: none;
         color: white;
         padding: 8px 16px;
         text-align: center;
         text-decoration: none;
-        font-size: 16px;
-        border-radius: 4px;
+        font-size: 26px;
+        border-radius: 8px;
         position: relative;
         top: 0px;
-        left: 225px;
-        cursor: pointer;">Start Practice</button>
+        left:650px;
+        cursor: pointer;">Start Quiz</button>
     <button id="stopButton" style="background-color: #FF5733; /* Red */
         border: none;
         color: white;
@@ -98,19 +103,12 @@
         text-align: center;
         text-decoration: none;
         display: none;
-        font-size: 16px;
-        border-radius: 4px;
+        font-size: 26px;
+        border-radius: 8px;
         position: relative;
         top: 0px;
-        left: 225px;
-        cursor: pointer;">Stop Practice</button>
-
-    <div id="score">Score</div>
-    <div id="letter">Show us a A.</div>
-    <h1>Streaming Data</h1>
-    <div id="data-container"></div>
-
-    <p>Number of fingers detected: <span id="letter">a</span></p>
+        left: 650px;
+        cursor: pointer;">Stop Quiz</button>
 
     <script>
         fetch('http://localhost:3000', {
@@ -171,11 +169,12 @@
 
 
         let score = 0
-        let groundLetter = 'A';
+        let groundLetter = 'B';
         const source = new EventSource('/stream')
         source.onmessage = function (event) {
-            // console.log(event.data)
-            console.log(groundLetter)
+            console.log(event.data)
+            // alert(event.data)
+            // console.log(groundLetter)
             if (event.data == groundLetter) {
                 updateScore()
                 updateLetter()
@@ -191,6 +190,12 @@
             document.getElementById("letter").textContent = "Show us a " + groundLetter + "."
         }
         function displayScore() {
+            document.getElementById("score").textContent = "Score: " + score
+        }
+        window.onload = function () {
+            groundLetter = "B"
+            document.getElementById("letter").textContent = "Show us a " + groundLetter + "."
+            score = 0
             document.getElementById("score").textContent = "Score: " + score
         }
     </script>

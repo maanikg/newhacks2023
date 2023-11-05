@@ -5,8 +5,8 @@ import mediapipe as mp
 import numpy as np
 
 print("Loading start")
-# model_dict = pickle.load(open("model.p", "rb"))
-# model = model_dict["model"]
+model_dict = pickle.load(open("model.p", "rb"))
+model = model_dict["model"]
 print("Loaded")
 
 cap = cv2.VideoCapture(0)

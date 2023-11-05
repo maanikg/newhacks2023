@@ -23,7 +23,7 @@ predicted_character = None
 #     return Response(event_stream(), mimetype="text/event-stream")
 
 # try:
-print("Loading start")
+# print("Loading start")
 try:
     with open("model.p", "rb") as f:
         model_dict = pickle.load(f)
@@ -39,7 +39,7 @@ cap = cv2.VideoCapture(0)
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
-# print("Loading model...")
+print("Loading model...")
 
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
@@ -77,7 +77,6 @@ while True:
     data_aux = []
     x_ = []
     y_ = []
-
     ret, frame = cap.read()
 
     H, W, _ = frame.shape
@@ -108,51 +107,49 @@ while True:
                 y = hand_landmarks.landmark[i].y
                 data_aux.append(x - min(x_))
                 data_aux.append(y - min(y_))
+            x1 = int(min(x_) * W) - 10
+            y1 = int(min(y_) * H) - 10
 
-        x1 = int(min(x_) * W) - 10
-        y1 = int(min(y_) * H) - 10
+            x2 = int(max(x_) * W) - 10
+            y2 = int(max(y_) * H) - 10
 
-        x2 = int(max(x_) * W) - 10
-        y2 = int(max(y_) * H) - 10
+            if len(data_aux) > 42:
+                cv2.imshow("frame", frame)
+                cv2.waitKey(1)
+                continue
+            # data_aux = data_aux[:42]
+            prediction = model.predict([np.asarray(data_aux)])
 
-        if len(data_aux) > 42:
-            cv2.imshow("frame", frame)
-            cv2.waitKey(1)
-            continue
-        # data_aux = data_aux[:42]
-        prediction = model.predict([np.asarray(data_aux)])
-
-        predicted_character = labels_dict[int(prediction[0])]
-
-        if first:
-            start_time = time.time()
-            temp = predicted_character
-            first = False
-        else:
-            if temp != predicted_character:
+            predicted_character = labels_dict[int(prediction[0])]
+            print(predicted_character)
+            if first:
                 start_time = time.time()
-            elif time.time() - start_time >= 3:
-                print(predicted_character)
-            temp = predicted_character
+                temp = predicted_character
+                first = False
+            else:
+                if temp != predicted_character:
+                    start_time = time.time()
+                elif time.time() - start_time >= 3:
+                    print(predicted_character)
+                temp = predicted_character
 
-        # cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 0), 4)
-        # cv2.putText(
-        #     frame,
-        #     predicted_character,
-        #     (x1, y1 - 10),
-        #     cv2.FONT_HERSHEY_SIMPLEX,
-        #     1.3,
-        #     (0, 0, 0),
-        #     3,
-        #     cv2.LINE_AA,
-        # )
+            # cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 0), 4)
+            # cv2.putText(
+            #   frame,
+            #    predicted_character,
+            #    (x1, y1 - 10),
+            #    cv2.FONT_HERSHEY_SIMPLEX,
+            #    1.3,
+            #    (0, 0, 0),
+            #    3,
+            #    cv2.LINE_AA,
+            # )
 
-    cv2.imshow("frame", frame)
-    cv2.waitKey(1)
+        cv2.imshow("frame", frame)
+        cv2.waitKey(1)
 
-    # if predicted_character == "A":
-    #     break
+        # if predicted_character == "A":
+        #     break
 
-
-cap.release()
-cv2.destroyAllWindows()
+    cap.release()
+    cv2.destroyAllWindows()
