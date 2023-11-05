@@ -8,7 +8,32 @@
     <!--<button id="startButton">Start Script</button>
     <button id="stopButton" style="display: none;">Stop Script</button>-->
 
-    
+
+    <!-- <button id="startButton">Start Script</button>
+    <button id="stopButton" style="display: none;">Stop Script</button> -->
+
+    <script type="text/javascript">
+        const source = new EventSource('/stream')
+        // source.onopen = function (event) {
+        //     alert("opened")
+        // }
+        source.onmessage = function (event) {
+            console.log(event.data)
+            updateScore()
+            displayScore()
+        }
+        let score = 0
+        // displayScore()
+        function updateScore() {
+            score += 1
+        }
+        function displayScore() {
+            document.getElementById("score").textContent = "Score: " + score
+        }
+        window.onload = function () {
+            document.getElementById("score").textContent = "scoreee"
+        }
+    </script>
     <title>ASLingo - Learn American Sign Language</title>
     <style>
         /* Header styles */
@@ -26,7 +51,7 @@
             /* Rounded edges */
         }
 
-        #logo a{
+        #logo a {
             font-family: Palanquin Dark;
             color: #2f4d16;
             font-weight: 700;

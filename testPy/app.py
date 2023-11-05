@@ -84,9 +84,17 @@ def start_test():
     return jsonify(success=True)
 
 
+# i = 0
+
+
 @app.route("/stream")
 def stream():
+    # global i
+    # i += 1
+
     def event_stream():
+        # yield f"data: {i}\n\n"
+        # return
         # try:
         global processTest
         if processTest:
@@ -97,7 +105,7 @@ def stream():
                 if output == "" and processTest.poll() is not None:
                     break
                 if output:
-                    print(output)
+                    # print(output)
                     yield f"data: {output}\n\n"
                     # time.sleep(1)
             # print(output)
