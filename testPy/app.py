@@ -1,5 +1,7 @@
 # print("test")
 from flask import Flask, render_template, request, jsonify
+from flask_sse import sse
+
 import subprocess
 
 app = Flask(__name__)
@@ -22,7 +24,6 @@ def start_script():
     #if process is None or process.returncode is not None:
         process = subprocess.Popen(['python', './inference_classifier.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         return jsonify(success=True)
-        return jsonify(success=False)
 
 @app.route('/stop_script', methods=['POST'])
 def stop_script():
@@ -31,18 +32,21 @@ def stop_script():
     #if process and process.returncode is None:
         process.terminate()
         return jsonify(success=True)
-    #return jsonify(success=False)
 
-@app.route('/startFun', methods=['POST'])
-def startFun():
-    process = subprocess.Popen(['python', './inference_classifier.py'])
-    return redirect(url_for('/learn'))
+@app.route('/start_test', methods=['POST'])
+def start_test():
+        global processTest
+    #if process is None or process.returncode is not None:
+        processTest = subprocess.Popen(['python', './practiceTest.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        return jsonify(success=True)
 
-@app.route('/stopFun', methods=['POST'])
-def stopFun():
-    process.terminate()
-    #return redirect(url_for('index'))
-
+@app.route('/stop_test', methods=['POST'])
+def stop_test():
+    #global process
+        global processTest
+    #if process and process.returncode is None:
+        processTest.terminate()
+        return jsonify(success=True)
 
 @app.route('/run-script')
 def run_script():
@@ -51,6 +55,15 @@ def run_script():
     
     # Execute the Python script using subprocess
     subprocess.run(['python', script_path], capture_output=False, text=False, check=False)
+
+@app.route('/practice')
+def practice():
+    script_path = './inference_classifier.py'
+    return render_template('practice.html')
+    
+@app.route('/stream')
+def stream():
+    return sse(sse_id='stream', retry=1000)
 
 if __name__ == '__main__':
     app.run(debug=True)

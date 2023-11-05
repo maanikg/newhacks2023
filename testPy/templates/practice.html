@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<form action="/stop_subprocess" method="post">
+        <input type="submit" value="Stop Subprocess">
+    </form>-->
+    <button id="startButton">Start Script</button>
+    <button id="stopButton" style="display: none;">Stop Script</button>
+
+    <script type="text/javascript">
+        document.getElementById('startButton').addEventListener('click', function () {
+            // Send a request to start the script
+            fetch('/start_test', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('startButton').style.display = 'none';
+                    document.getElementById('stopButton').style.display = 'block';
+                }
+            });
+        });
+
+        document.getElementById('stopButton').addEventListener('click', function () {
+            // Send a request to stop the script
+            fetch('/stop_test', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('startButton').style.display = 'block';
+                    document.getElementById('stopButton').style.display = 'none';
+                }
+            });
+        });
+    </script>
+    <title>ASLingo - Learn American Sign Language</title>
+    <style>
+        /* Header styles */
+        header {
+            background: #a5d27e;
+            color: white;
+            padding: 20px; /* Increased padding to make the header larger */
+            height: 80px; /* Increased height to make the header larger */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px; /* Rounded edges */
+        }
+
+        #logo {
+            font-family: Palanquin Dark;
+            color: #2f4d16;
+            font-weight: 700;
+            font-size: 40px; /* Larger font size for the logo */
+            margin: 0 20px; /* Increased margin to move away from the edges */
+        }
+
+        #nav {
+            font-family: Palanquin Dark;
+            font-weight: 600;
+            font-size: 28px; /* Larger font size for the navigation links */
+        }
+
+        #nav a {
+            color: #000000;
+            text-decoration: none;
+            margin: 0 30px; /* Increased margin to move away from the edges */
+        }
+
+        /* Add background image */
+        body {
+            background-image: url('images/background.png');
+            background-size: 1300px 735px; 
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: bottom;
+            margin: 0; /* Remove default margin to cover the entire viewport */
+            padding: 0; /* Remove default padding to cover the entire viewport */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="logo">ASLingo</div>
+        <nav id="nav">
+            <a href="about">About</a>
+            <a href="learn">Learn ASL</a>
+            <a href="practice">Practice</a>
+        </nav>
+    </header>
+
+    <div id="score">Score:</div>
+    <div id="letter">Show us a [x].</div>
+    <h1>Streaming Data</h1>
+    <div id="data-container"></div>
+
+    <script>
+        const eventSource = new EventSource('/stream');
+        const dataContainer = document.getElementById('data-container');
+
+        eventSource.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            const dataElement = document.createElement('p');
+            dataElement.textContent = `Data: ${data.data}`;
+            dataContainer.appendChild(dataElement);
+        };
+    </script>
+    <!-- Your content for the About, Learn ASL, and Practice pages goes here -->
+
+</body>
+</html>
