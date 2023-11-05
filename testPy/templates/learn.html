@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <form action="/stop_subprocess" method="post">
+    <!--<form action="/stop_subprocess" method="post">
         <input type="submit" value="Stop Subprocess">
-    </form>
+    </form>-->
+    <button id="startButton">Start Script</button>
+    <button id="stopButton" style="display: none;">Stop Script</button>
+
+    <script type="text/javascript">
+        document.getElementById('startButton').addEventListener('click', function () {
+            // Send a request to start the script
+            fetch('/start_script', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('startButton').style.display = 'none';
+                    document.getElementById('stopButton').style.display = 'block';
+                }
+            });
+        });
+
+        document.getElementById('stopButton').addEventListener('click', function () {
+            // Send a request to stop the script
+            fetch('/stop_script', { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('startButton').style.display = 'block';
+                    document.getElementById('stopButton').style.display = 'none';
+                }
+            });
+        });
+    </script>
     <title>ASLingo - Learn American Sign Language</title>
     <style>
         /* Header styles */
