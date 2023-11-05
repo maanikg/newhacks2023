@@ -96,15 +96,15 @@
     <h1>Streaming Data</h1>
     <div id="data-container"></div>
 
+    <p>Number of fingers detected: <span id="letter">a</span></p>
+
     <script>
         const eventSource = new EventSource('/stream');
-        const dataContainer = document.getElementById('data-container');
+        const fingersElement = document.getElementById('fingers');
 
         eventSource.onmessage = (event) => {
-            const data = JSON.parse(event.data);
-            const dataElement = document.createElement('p');
-            dataElement.textContent = `Data: ${data.data}`;
-            dataContainer.appendChild(dataElement);
+            const data = event.data;
+            fingersElement.textContent = data; // Update the text box with detected fingers
         };
     </script>
     <!-- Your content for the About, Learn ASL, and Practice pages goes here -->
