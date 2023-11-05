@@ -5,43 +5,10 @@
     <!--<form action="/stop_subprocess" method="post">
         <input type="submit" value="Stop Subprocess">
     </form>-->
-    <button id="startButton">Start Script</button>
-    <button id="stopButton" style="display: none;">Stop Script</button>
+    <!--<button id="startButton">Start Script</button>
+    <button id="stopButton" style="display: none;">Stop Script</button>-->
 
-    <script type="text/javascript">
-        document.getElementById('startButton').addEventListener('click', function () {
-            // Send a request to start the script
-            fetch('/start_test', { method: 'POST' })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('startButton').style.display = 'none';
-                        document.getElementById('stopButton').style.display = 'block';
-                    }
-                });
-        });
-
-        document.getElementById('stopButton').addEventListener('click', function () {
-            // Send a request to stop the script
-            fetch('/stop_test', { method: 'POST' })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('startButton').style.display = 'block';
-                        document.getElementById('stopButton').style.display = 'none';
-                    }
-                });
-        });
-        const source = new EventSource('/stream')
-        // source.onopen = function (event) {
-        //     alert("opened")
-        // }
-        source.onmessage = function (event) {
-            // alert("hello")
-            // alert(event.data)
-            console.log(event.data)
-        }
-    </script>
+    
     <title>ASLingo - Learn American Sign Language</title>
     <style>
         /* Header styles */
@@ -109,6 +76,32 @@
         </nav>
     </header>
 
+    <button id="startButton" style="background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 4px;
+        position: relative;
+        top: 0px;
+        left: 225px;
+        cursor: pointer;">Start Practice</button>
+    <button id="stopButton" style="background-color: #FF5733; /* Red */
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: none;
+        font-size: 16px;
+        border-radius: 4px;
+        position: relative;
+        top: 0px;
+        left: 225px;
+        cursor: pointer;">Stop Practice</button>
+
     <div id="score">Score:</div>
     <div id="letter">Show us a [x].</div>
     <h1>Streaming Data</h1>
@@ -138,6 +131,42 @@
         //     dataContainer.appendChild(dataElement);
         // };
     </script>
+
+    <script type="text/javascript">
+        document.getElementById('startButton').addEventListener('click', function () {
+            // Send a request to start the script
+            fetch('/start_test', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('startButton').style.display = 'none';
+                        document.getElementById('stopButton').style.display = 'block';
+                    }
+                });
+        });
+
+        document.getElementById('stopButton').addEventListener('click', function () {
+            // Send a request to stop the script
+            fetch('/stop_test', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('startButton').style.display = 'block';
+                        document.getElementById('stopButton').style.display = 'none';
+                    }
+                });
+        });
+        const source = new EventSource('/stream')
+        // source.onopen = function (event) {
+        //     alert("opened")
+        // }
+        source.onmessage = function (event) {
+            // alert("hello")
+            // alert(event.data)
+            console.log(event.data)
+        }
+    </script>
+
     <!-- Your content for the About, Learn ASL, and Practice pages goes here -->
 
 </body>

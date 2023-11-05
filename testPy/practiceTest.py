@@ -71,7 +71,8 @@ labels_dict = {
     24: "Y",
     25: "Z",
 }
-start_time = time.time()
+
+first = True
 while True:
     data_aux = []
     x_ = []
@@ -122,8 +123,18 @@ while True:
         prediction = model.predict([np.asarray(data_aux)])
 
         predicted_character = labels_dict[int(prediction[0])]
-        print(predicted_character)
-        # sys.stdout.flush()
+
+        if first:
+            start_time = time.time()
+            temp = predicted_character
+            first = False
+        else:
+            if temp != predicted_character:
+                start_time = time.time()
+            elif time.time() - start_time >= 3:
+                print(predicted_character)
+            temp = predicted_character
+        
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 0), 4)
         cv2.putText(
             frame,
