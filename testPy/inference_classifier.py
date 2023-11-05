@@ -61,6 +61,11 @@ while True:
         x2 = int(max(x_) * W) - 10
         y2 = int(max(y_) * H) - 10
 
+        if len(data_aux) > 42:
+            cv2.imshow('frame', frame)
+            cv2.waitKey(1)
+            continue
+        #data_aux = data_aux[:42]
         prediction = model.predict([np.asarray(data_aux)])
 
         predicted_character = labels_dict[int(prediction[0])]
