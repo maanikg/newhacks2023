@@ -10,13 +10,13 @@
             </nav>
         </header>
 
-        <h1 style="text-align: left; margin-left: 20px; font-size: 24px;">Module 1: ASL Alphabet</h1>
+    <h1 style="text-align: left; margin-left: 20px; font-size: 24px;">Module 1: ASL Alphabet</h1>
 
-    
-        <!-- Your content for the About, Learn ASL, and Practice pages goes here -->
-        <!----<button style="position: relative; top: 50px; left: 30px;">Click Me</button>-->
 
-        <button id="startButton" style="background-color: #4CAF50; /* Green */
+    <!-- Your content for the About, Learn ASL, and Practice pages goes here -->
+    <!----<button style="position: relative; top: 50px; left: 30px;">Click Me</button>-->
+
+    <button id="startButton" style="background-color: #4CAF50; /* Green */
         border: none;
         color: white;
         padding: 8px 16px;
@@ -28,7 +28,7 @@
         top: 320px;
         left: 450px;
         cursor: pointer;">Start Practice</button>
-        <button id="stopButton" style="background-color: #FF5733; /* Red */
+    <button id="stopButton" style="background-color: #FF5733; /* Red */
         border: none;
         color: white;
         padding: 8px 16px;
@@ -44,39 +44,39 @@
 
 
 
-    </body>
+</body>
 
 <head>
     <!--<form action="/stop_subprocess" method="post">
         <input type="submit" value="Stop Subprocess">
     </form>-->
 
-    
+
 
 
     <script type="text/javascript">
         document.getElementById('startButton').addEventListener('click', function () {
             // Send a request to start the script
             fetch('/start_script', { method: 'POST' })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('startButton').style.display = 'none';
-                    document.getElementById('stopButton').style.display = 'block';
-                }
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('startButton').style.display = 'none';
+                        document.getElementById('stopButton').style.display = 'block';
+                    }
+                });
         });
 
         document.getElementById('stopButton').addEventListener('click', function () {
             // Send a request to stop the script
             fetch('/stop_script', { method: 'POST' })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('startButton').style.display = 'block';
-                    document.getElementById('stopButton').style.display = 'none';
-                }
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('startButton').style.display = 'block';
+                        document.getElementById('stopButton').style.display = 'none';
+                    }
+                });
         });
     </script>
     <title>ASLingo - Learn American Sign Language</title>
@@ -86,48 +86,53 @@
         header {
             background: #a5d27e;
             color: white;
-            padding: 20px; /* Increased padding to make the header larger */
-            height: 80px; /* Increased height to make the header larger */
+            padding: 20px;
+            /* Increased padding to make the header larger */
+            height: 80px;
+            /* Increased height to make the header larger */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 10px; /* Rounded edges */
+            border-radius: 10px;
+            /* Rounded edges */
         }
 
         #logo {
             font-family: Palanquin Dark;
             color: #2f4d16;
             font-weight: 700;
-            font-size: 40px; /* Larger font size for the logo */
-            margin: 0 20px; /* Increased margin to move away from the edges */
+            font-size: 40px;
+            /* Larger font size for the logo */
+            margin: 0 20px;
+            /* Increased margin to move away from the edges */
         }
 
         #nav {
             font-family: Palanquin Dark;
             font-weight: 600;
-            font-size: 28px; /* Larger font size for the navigation links */
+            font-size: 28px;
+            /* Larger font size for the navigation links */
         }
 
         #nav a {
             color: #000000;
             text-decoration: none;
-            margin: 0 30px; /* Increased margin to move away from the edges */
+            margin: 0 30px;
+            /* Increased margin to move away from the edges */
         }
 
-        
+
 
         /* Add background image */
         body {
             background-image: url('images/alphabet.jpg');
-            background-size: 600px 400px; 
+            background-size: 600px 400px;
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: left bottom; 
             margin: 0; 
             padding: 0; 
         }
-        
-
     </style>
 </head>
 <!--<body>
@@ -137,18 +142,14 @@
             <a href="about">About</a>
             <a href="learn">Learn ASL</a>
             <a href="practice">Practice</a>
+            </img>
         </nav>
     </header>
+    <div>
+        <img src="https://www.creativefabrica.com/wp-content/uploads/2021/07/19/ASL-alphabet-hand-signs-580x386.jpg">
+    </div>
 
     
 
 </body>-->
 </html>
-
-
-
-
-
-
-
-
