@@ -12,28 +12,6 @@
     <!-- <button id="startButton">Start Script</button>
     <button id="stopButton" style="display: none;">Stop Script</button> -->
 
-    <script type="text/javascript">
-        const source = new EventSource('/stream')
-        // source.onopen = function (event) {
-        //     alert("opened")
-        // }
-        source.onmessage = function (event) {
-            console.log(event.data)
-            updateScore()
-            displayScore()
-        }
-        let score = 0
-        // displayScore()
-        function updateScore() {
-            score += 1
-        }
-        function displayScore() {
-            document.getElementById("score").textContent = "Score: " + score
-        }
-        window.onload = function () {
-            document.getElementById("score").textContent = "scoreee"
-        }
-    </script>
     <title>ASLingo - Learn American Sign Language</title>
     <style>
         /* Header styles */
@@ -127,8 +105,8 @@
         left: 225px;
         cursor: pointer;">Stop Practice</button>
 
-    <div id="score">Score:</div>
-    <div id="letter">Show us a [x].</div>
+    <div id="score">Score</div>
+    <div id="letter">Show us a A.</div>
     <h1>Streaming Data</h1>
     <div id="data-container"></div>
 
@@ -181,18 +159,41 @@
                     }
                 });
         });
-        const source = new EventSource('/stream')
-        // source.onopen = function (event) {
-        //     alert("opened")
+        // const source = new EventSource('/stream')
+        // // source.onopen = function (event) {
+        // //     alert("opened")
+        // // }
+        // source.onmessage = function (event) {
+        //     // alert("hello")
+        //     // alert(event.data)
+        //     console.log(event.data)
         // }
+
+
+        let score = 0
+        let groundLetter = 'A';
+        const source = new EventSource('/stream')
         source.onmessage = function (event) {
-            // alert("hello")
-            // alert(event.data)
-            console.log(event.data)
+            // console.log(event.data)
+            console.log(groundLetter)
+            if (event.data == groundLetter) {
+                updateScore()
+                updateLetter()
+                displayScore()
+            }
+        }
+        function updateScore() {
+            score += 1
+        }
+        function updateLetter() {
+            groundLetter = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+            console.log(groundLetter + "!!!")
+            document.getElementById("letter").textContent = "Show us a " + groundLetter + "."
+        }
+        function displayScore() {
+            document.getElementById("score").textContent = "Score: " + score
         }
     </script>
-
-    <!-- Your content for the About, Learn ASL, and Practice pages goes here -->
 
 </body>
 
