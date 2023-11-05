@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
+    <body>
+        <header>
+            <div id="logo">ASLingo</div>
+            <nav id="nav">
+                <a href="about.html">About</a>
+                <a href="learn-asl.html">Learn ASL</a>
+                <a href="quiz.html">Quiz</a>
+            </nav>
+        </header>
+    
+        <!-- Your content for the About, Learn ASL, and Practice pages goes here -->
+        <!----<button style="position: relative; top: 50px; left: 30px;">Click Me</button>-->
+
+        <button id="startButton" style="background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 4px;
+        position: relative;
+        top: 400px;
+        left: 450px;
+        cursor: pointer;">Start Practice</button>
+        <button id="stopButton" style="background-color: #FF5733; /* Red */
+        border: none;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: none;
+        font-size: 16px;
+        border-radius: 4px;
+        position: relative;
+        top: 400px;
+        left: 450px;
+        cursor: pointer;">Stop Practice</button>
+
+
+
+    </body>
+
 <head>
     <!--<form action="/stop_subprocess" method="post">
         <input type="submit" value="Stop Subprocess">
     </form>-->
-    <button id="startButton">Start Script</button>
-    <button id="stopButton" style="display: none;">Stop Script</button>
+
+    
+
 
     <script type="text/javascript">
         document.getElementById('startButton').addEventListener('click', function () {
@@ -66,16 +110,22 @@
             margin: 0 30px; /* Increased margin to move away from the edges */
         }
 
+        
+
         /* Add background image */
         body {
-            background-image: url('images/background.png');
-            background-size: 1300px 735px; 
+            background-image: url('images/alphabet.jpg');
+            background-size: 600px 400px; 
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-position: bottom;
-            margin: 0; /* Remove default margin to cover the entire viewport */
-            padding: 0; /* Remove default padding to cover the entire viewport */
+            background-position: left bottom; 
+            margin: 0; 
+            padding: 0; 
+
+            
         }
+        
+
     </style>
 </head>
 <body>
@@ -92,3 +142,8 @@
 
 </body>
 </html>
+
+
+
+
+

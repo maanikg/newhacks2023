@@ -6,26 +6,40 @@ import subprocess
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
-@app.route('/learn')
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/aboutTest")
+def aboutTest():
+    return render_template("aboutTest.html")
+
+
+@app.route("/learn")
 def learn():
-    #script_path = './inference_classifier.py'
-    
-    # Execute the Python script using subprocess
-    #subprocess.run(['python', script_path], capture_output=False, text=False, check=False)
-    return render_template('learn.html')
+    # script_path = './inference_classifier.py'
 
-@app.route('/start_script', methods=['POST'])
+    # Execute the Python script using subprocess
+    # subprocess.run(['python', script_path], capture_output=False, text=False, check=False)
+    return render_template("learn.html")
+
+
+@app.route("/start_script", methods=["POST"])
 def start_script():
         global process
     #if process is None or process.returncode is not None:
         process = subprocess.Popen(['python', './inference_classifier.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         return jsonify(success=True)
 
-@app.route('/stop_script', methods=['POST'])
+
+@app.route("/stop_script", methods=["POST"])
 def stop_script():
     #global process
         global process
@@ -48,13 +62,16 @@ def stop_test():
         processTest.terminate()
         return jsonify(success=True)
 
-@app.route('/run-script')
+@app.route("/run-script")
 def run_script():
     # Replace 'your_script.py' with the path to your Python script
-    script_path = './inference_classifier.py'
-    
+    script_path = "./inference_classifier.py"
+
     # Execute the Python script using subprocess
-    subprocess.run(['python', script_path], capture_output=False, text=False, check=False)
+    subprocess.run(
+        ["python", script_path], capture_output=False, text=False, check=False
+    )
+
 
 @app.route('/practice')
 def practice():
